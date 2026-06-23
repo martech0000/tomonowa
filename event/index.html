@@ -173,6 +173,21 @@
       transform: translateY(-2px);
       filter: brightness(1.05);
     }
+    .apply-button--event {
+      border-color: rgba(143, 216, 255, .78);
+      background: linear-gradient(180deg, #8dd9ff 0%, #2a92cf 48%, #0c4e7b 100%);
+      color: #fff;
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+      font-size: clamp(17px, 2.5vw, 24px);
+      letter-spacing: .12em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .18);
+      box-shadow:
+        0 0 28px rgba(89, 179, 233, .34),
+        inset 0 1px 0 rgba(255, 255, 255, .42);
+    }
+    .apply-button--event:hover {
+      filter: brightness(1.08) saturate(1.06);
+    }
     .modal {
       display: none;
       position: fixed;
@@ -303,7 +318,7 @@
             <div class="fact"><span>内容</span><b>立食形式のBBQ交流会。食材・ドリンク・BBQ用品はこちらで用意します。</b></div>
           </div>
           <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
-          <button class="apply-button" onclick="openForm()">このイベントに申し込む</button>
+          <button class="apply-button apply-button--event" onclick="openForm()">このイベントに申し込む</button>
         </div>
       </div>
     </section>
