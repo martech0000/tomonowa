@@ -2,161 +2,421 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>TOMONOWA BBQ PARTY 2026｜7月18日 18:00</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>TOMONOWA | 今夜から、友達の輪が広がる。</title>
   <style>
-    :root{--night:#020a13;--navy:#06192a;--navy2:#0b2a42;--gold:#e9bd67;--gold2:#fff1bf;--ice:#d9f5ff;--blue:#67c7f2;--orange:#e87522;--text:#f8fbff;--muted:#a9bfcb;--line:rgba(224,190,111,.24)}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--night);color:var(--text);font-family:"Yu Gothic UI","Noto Sans JP",system-ui,sans-serif;line-height:1.8}
-    button,input{font:inherit}
-    a{color:inherit}
-    .page{overflow:hidden;background:radial-gradient(circle at 20% 0%,rgba(103,199,242,.18),transparent 32%),radial-gradient(circle at 88% 12%,rgba(233,189,103,.16),transparent 28%),linear-gradient(180deg,#020a13 0%,#06192a 42%,#020a13 100%)}
-    .nav{height:78px;padding:0 clamp(18px,5vw,72px);display:flex;align-items:center;border-bottom:1px solid rgba(255,255,255,.08);background:rgba(2,10,19,.78);backdrop-filter:blur(18px);position:sticky;top:0;z-index:5}
-    .logo{width:176px;height:58px;object-fit:contain;object-position:left center}
-    .nav small{margin-left:auto;color:var(--muted);font-size:11px;letter-spacing:.12em}
-    .hero{min-height:calc(100svh - 78px);display:grid;grid-template-columns:1fr;gap:0;align-items:center;justify-items:center;padding:clamp(42px,7vw,80px) clamp(18px,5vw,60px);text-align:center;position:relative}.hero-copy{position:relative;z-index:2;max-width:820px;margin-top:-140px}.hero-divider{width:min(420px,74vw);height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:34px auto 16px;position:relative}.hero-divider:after{content:"";position:absolute;left:50%;top:50%;width:7px;height:7px;background:var(--gold);transform:translate(-50%,-50%) rotate(45deg);box-shadow:0 0 20px rgba(233,189,103,.9)}.lead-small{font-size:14px;color:#f1e5cc}
-    .eyebrow{color:var(--blue);font-size:11px;font-weight:900;letter-spacing:.22em;text-transform:uppercase}
-    h1,h2,h3,p{margin-top:0}
-    .hero h1{font-size:clamp(48px,7vw,104px);line-height:1.05;letter-spacing:-.07em;margin:22px 0 24px}
-    .hero h1 span{display:block;color:var(--gold)}
-    .lead{max-width:560px;color:#d5e5ee;font-size:clamp(15px,1.8vw,18px)}
-    .cta-row{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px}
-    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:54px;padding:15px 28px;border-radius:0;border:1px solid rgba(255,255,255,.22);text-decoration:none;font-weight:900;letter-spacing:.04em;cursor:pointer}
-    .btn-primary{background:linear-gradient(135deg,#fff0b8,#e5b453 48%,#b98022);color:#06111d;box-shadow:0 18px 56px rgba(233,189,103,.28)}
-    .btn-ghost{background:rgba(255,255,255,.06);color:#e8f5ff}
-    .hero-visual{position:relative;width:min(100%,760px);margin:0 auto}
-    .hero-visual:before{content:"";position:absolute;inset:-18px;border:1px solid var(--line);border-radius:0;background:linear-gradient(135deg,rgba(255,255,255,.08),rgba(255,255,255,.02));transform:rotate(-1.4deg)}
-    .hero-photo{position:relative;min-height:720px;border-radius:0;background:linear-gradient(180deg,rgba(2,10,19,.02),rgba(2,10,19,.78)),url("tomonowa-party-hero.png") center/cover;box-shadow:0 35px 110px rgba(0,0,0,.48);overflow:hidden}
-    .section{max-width:1140px;margin:0 auto;padding:clamp(72px,9vw,120px) 22px}
-    .center{text-align:center}
-    .section-title{font-size:clamp(34px,5vw,64px);line-height:1.22;letter-spacing:-.055em;margin-bottom:18px}
-    .section-title em{color:var(--gold);font-style:normal}
-    .section-copy{max-width:760px;margin:0 auto;color:#c7d9e3}
-    .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:42px}
-    .card{border:1px solid var(--line);background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.025));padding:28px;border-radius:0;box-shadow:0 18px 50px rgba(0,0,0,.18)}
-    .card b{display:block;color:var(--gold);font-size:12px;letter-spacing:.18em;margin-bottom:12px}
-    .card h3{font-size:21px;margin-bottom:10px}
-    .card p{color:#bfd0da;font-size:14px;margin:0}
-    .promise{background:linear-gradient(145deg,#eaf9ff,#ccecf8);color:#061b2b}
-    .promise .section-copy,.promise .card p{color:#4f6878}
-    .promise .card{background:rgba(255,255,255,.7);border-color:rgba(50,120,160,.18)}
-    .event-wrap{display:grid;grid-template-columns:.92fr 1.08fr;gap:42px;align-items:start}
-    .flyer-card{padding:14px;border-radius:0;background:linear-gradient(145deg,rgba(255,255,255,.15),rgba(255,255,255,.04));border:1px solid var(--line);box-shadow:0 26px 90px rgba(0,0,0,.35)}
-    .flyer-card img{display:block;width:100%;border-radius:0;background:#fff}
-    .event-panel{padding:36px;border:1px solid var(--line);border-radius:0;background:linear-gradient(145deg,rgba(5,28,46,.92),rgba(2,10,19,.82));box-shadow:0 24px 80px rgba(0,0,0,.28)}
-    .event-panel h2{font-size:clamp(36px,5vw,62px);line-height:1.12;letter-spacing:-.055em;margin:10px 0 18px}
-    .facts{margin:28px 0;border-top:1px solid rgba(255,255,255,.12)}
-    .fact{display:grid;grid-template-columns:110px 1fr;gap:16px;padding:17px 0;border-bottom:1px solid rgba(255,255,255,.12)}
-    .fact span{color:var(--muted);font-size:12px;font-weight:900}
-    .fact b{font-size:15px}
-    .price-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:24px 0}
-    .price{padding:18px;border-radius:0;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12)}
-    .price strong{display:block;color:var(--gold);font-size:14px}
-    .price p{margin:6px 0 0;font-weight:900}
-    .note{font-size:12px;color:#c9dce7;text-align:center}
-    .modal{display:none;position:fixed;inset:0;z-index:20;background:rgba(0,5,10,.86);padding:16px;overflow:auto}
-    .modal.open{display:grid;place-items:center}
-    .dialog{width:min(760px,100%);position:relative;padding:clamp(28px,5vw,44px);border-radius:0;background:linear-gradient(145deg,#f6fcff,#dff4fb);color:#071b2b;box-shadow:0 35px 120px rgba(0,0,0,.55)}
-    .close{position:absolute;top:10px;right:16px;border:0;background:transparent;font-size:30px;cursor:pointer}
-    .info{padding:16px 18px;margin:18px 0;border-left:4px solid #2e9ed1;background:#ccebf7;border-radius:0}
-    .form{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px}
-    .field{display:grid;gap:6px}
-    .field.full{grid-column:1/-1}
-    .field label{font-size:12px;font-weight:900}
-    .field input{width:100%;padding:12px;border:1px solid #b6d2df;border-radius:0;background:#fff}
-    .choice{display:flex;gap:8px;flex-wrap:wrap}
-    .choice label{flex:1;min-width:130px;padding:11px;border:1px solid #b6d2df;border-radius:0;background:#fff;cursor:pointer}
-    .choice input{width:auto}
-    .form .btn,.message{grid-column:1/-1}
-    .message{display:none;color:#b3261e;font-size:12px;font-weight:800}
-    .success{text-align:center;padding:42px 0}
-    footer{padding:42px 6vw;color:var(--muted);border-top:1px solid rgba(255,255,255,.08)}
-    @media(max-width:860px){
-      .nav small{display:none}.logo{width:150px}.hero{display:block;padding:44px 18px 76px}.hero h1{font-size:52px}.hero-photo{min-height:430px;margin-top:36px}.cards,.event-wrap{display:block}.card{margin:14px 0}.event-panel{padding:24px;margin-top:24px}.fact{grid-template-columns:92px 1fr}.price-grid{grid-template-columns:1fr}.form{grid-template-columns:1fr}.field.full,.form .btn,.message{grid-column:auto}
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #020b14;
+      color: #f7f3ea;
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+    }
+    button, input { font: inherit; }
+    .lp {
+      width: min(100%, 941px);
+      margin: 0 auto;
+      background: #020b14;
+    }
+    .lp-section {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+    }
+    .lp-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .cta-hit {
+      position: absolute;
+      z-index: 2;
+      display: block;
+    }
+    .cta-hit--hero {
+      left: 9.5%;
+      right: 9.5%;
+      top: 79.2%;
+      height: 8.6%;
+    }
+    .cta-hit--flow {
+      left: 12.5%;
+      right: 12.5%;
+      top: 73.6%;
+      height: 8.9%;
+    }
+    .cta-hit--final {
+      left: 9.5%;
+      right: 9.5%;
+      top: 63.8%;
+      height: 8.9%;
+    }
+    .cta-hit:focus-visible {
+      outline: 4px solid #fff;
+      outline-offset: -4px;
+    }
+    .current-event {
+      position: relative;
+      padding: clamp(64px, 10vw, 112px) clamp(22px, 7vw, 86px);
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(221, 171, 80, .16), transparent 34%),
+        radial-gradient(circle at 82% 14%, rgba(60, 136, 180, .14), transparent 36%),
+        linear-gradient(180deg, #020b14 0%, #061521 48%, #020b14 100%);
+    }
+    .current-event:before,
+    .current-event:after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(229, 184, 101, .82), transparent);
+    }
+    .current-event:before { top: 34px; }
+    .current-event:after { bottom: 34px; }
+    .event-kicker {
+      margin: 0 0 16px;
+      color: #e5b865;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-align: center;
+    }
+    .event-title {
+      margin: 0;
+      color: #fff;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(34px, 7vw, 72px);
+      font-weight: 500;
+      line-height: 1.22;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+    .event-title span { color: #e5b865; }
+    .event-lead {
+      max-width: 680px;
+      margin: 22px auto 42px;
+      color: #d9d1c2;
+      font-size: clamp(14px, 2.4vw, 18px);
+      line-height: 2;
+      text-align: center;
+    }
+    .event-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .flyer-frame {
+      padding: 10px;
+      border: 1px solid rgba(229, 184, 101, .34);
+      background: rgba(255, 255, 255, .04);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .38);
+    }
+    .flyer-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+    }
+    .event-detail {
+      border-top: 1px solid rgba(229, 184, 101, .34);
+      border-bottom: 1px solid rgba(229, 184, 101, .34);
+      padding: 10px 0 0;
+    }
+    .fact {
+      display: grid;
+      grid-template-columns: 106px 1fr;
+      gap: 18px;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      line-height: 1.7;
+    }
+    .fact:last-child { border-bottom: 0; }
+    .fact span {
+      color: #9db3c1;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    .fact b {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .price-note {
+      margin: 22px 0 0;
+      color: #d9d1c2;
+      font-size: 12px;
+      line-height: 1.9;
+      text-align: center;
+    }
+    .apply-button {
+      width: 100%;
+      margin-top: 24px;
+      min-height: 70px;
+      border: 1px solid rgba(255, 244, 199, .74);
+      background: linear-gradient(180deg, #ffe7a2 0%, #dca64a 100%);
+      color: #07121c;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(19px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: .16em;
+      cursor: pointer;
+      box-shadow: 0 0 28px rgba(229, 184, 101, .26);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .apply-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      padding: 16px;
+      overflow: auto;
+      background: rgba(0, 5, 10, .86);
+    }
+    .modal.open {
+      display: grid;
+      place-items: center;
+    }
+    .dialog {
+      position: relative;
+      width: min(760px, 100%);
+      padding: clamp(28px, 5vw, 44px);
+      background: #f7fbfd;
+      color: #071b2b;
+      box-shadow: 0 35px 120px rgba(0, 0, 0, .55);
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      border: 0;
+      background: transparent;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .dialog h2 {
+      margin: 0 0 16px;
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.35;
+    }
+    .info {
+      padding: 16px 18px;
+      margin: 18px 0;
+      border-left: 4px solid #071b2b;
+      background: #e8f2f6;
+      line-height: 1.8;
+    }
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 16px;
+    }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label {
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .field input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #c7d5dc;
+      background: #fff;
+    }
+    .choice {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .choice label {
+      flex: 1;
+      min-width: 130px;
+      padding: 11px;
+      border: 1px solid #c7d5dc;
+      background: #fff;
+      cursor: pointer;
+    }
+    .choice input { width: auto; }
+    .form .apply-button,
+    .message { grid-column: 1 / -1; }
+    .message {
+      display: none;
+      margin: 0;
+      color: #b3261e;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .success {
+      text-align: center;
+      padding: 42px 0;
+    }
+    @media (max-width: 760px) {
+      .event-layout { display: block; }
+      .event-detail { margin-top: 28px; }
+      .fact { grid-template-columns: 88px 1fr; }
+      .form { grid-template-columns: 1fr; }
+      .field.full,
+      .form .apply-button,
+      .message { grid-column: auto; }
     }
   </style>
 </head>
 <body>
-  <div class="page">
-    <nav class="nav">
-      <img class="logo" src="tomonowa-logo.png" alt="TOMONOWA">
-      <small>大人の友達づくりイベントコミュニティ</small>
-    </nav>
-
-    <section class="hero hero-reference"><div class="hero-visual"><div class="hero-photo" aria-label="TOMONOWAのイベント風景"></div></div><div class="hero-copy"><div class="eyebrow">TOMONOWA BBQ PARTY 2026</div><h1>夏らしいこと、<span>今年こそ。</span></h1><p class="lead">堅くない、気軽につながれるBBQ交流イベント。大人になってからの友達づくりを、もっと自然に。</p><div class="hero-divider"></div><p class="lead lead-small">一人参加も、友達との参加も。笹塚で楽しむ、夏の立食BBQ交流会。</p><div class="cta-row"><a class="btn btn-primary" href="#event">イベント詳細を見る</a><a class="btn btn-ghost" href="#about">TOMONOWAとは</a></div></div></section>
-
-    <section class="section center" id="about">
-      <div class="eyebrow">ABOUT TOMONOWA</div>
-      <h2 class="section-title">恋活でも、婚活でも、<br><em>人脈営業でもない。</em></h2>
-      <p class="section-copy">TOMONOWAは、大人になってからの友達づくりをもっと自然にするイベントコミュニティです。お酒を飲んだり、食事をしたり、季節のイベントを楽しみながら、また会いたいと思えるつながりを広げていきます。</p>
+  <main class="lp">
+    <section class="lp-section">
+      <img src="lp-assets/01-hero.png" alt="TOMONOWA 今夜から、友達の輪が広がる。">
+      <a class="cta-hit cta-hit--hero" href="#current-event" aria-label="イベント一覧を見る"></a>
     </section>
 
-    <section class="section">
-      <div class="center">
-        <div class="eyebrow">RECOMMENDED</div>
-        <h2 class="section-title">こんな方におすすめ</h2>
-      </div>
-      <div class="cards">
-        <article class="card"><b>01</b><h3>一人参加でも自然に話したい</h3><p>はじめまして同士でも、主催者が自然に会話へつなぎます。</p></article>
-        <article class="card"><b>02</b><h3>友達と気軽に参加したい</h3><p>友達との参加もOK。みんなでワイワイ楽しめる空気です。</p></article>
-        <article class="card"><b>03</b><h3>夏らしいイベントに参加したい</h3><p>食材・ドリンク・BBQ用品はこちらで用意。手ぶらで参加できます。</p></article>
-      </div>
-    </section>
+    <section class="lp-section"><img src="lp-assets/02-pain.png" alt="こんなふうに感じたことはありませんか？"></section>
+    <section class="lp-section"><img src="lp-assets/03-about.png" alt="TOMONOWAとは"></section>
+    <section class="lp-section"><img src="lp-assets/04-reassurance.png" alt="はじめてでも、ひとりでも、安心して参加できるように。"></section>
+    <section class="lp-section"><img src="lp-assets/05-events.png" alt="気軽に参加できる、大人の夜イベント。"></section>
 
-    <section class="promise">
-      <div class="section">
-        <div class="center">
-          <div class="eyebrow">OUR PROMISE</div>
-          <h2 class="section-title">安心して参加できるように。</h2>
-          <p class="section-copy">初めてでも、一人でも、変に気を張らずに楽しめる場を大切にしています。</p>
-        </div>
-        <div class="cards">
-          <article class="card"><b>WELCOME</b><h3>一人参加歓迎</h3><p>会話に入りやすいよう、主催者がサポートします。</p></article>
-          <article class="card"><b>NO SALES</b><h3>営業・勧誘は禁止</h3><p>安心して楽しめる空気を守るため、営業目的の参加は禁止です。</p></article>
-          <article class="card"><b>CASUAL</b><h3>手ぶらでOK</h3><p>食材・ドリンク・BBQ用品一式をご用意しています。</p></article>
-        </div>
-      </div>
-    </section>
+    <section class="current-event" id="current-event">
+      <p class="event-kicker">CURRENT EVENT</p>
+      <h1 class="event-title">開催中の<span>イベント</span></h1>
+      <p class="event-lead">TOMONOWAの世界観はそのままに、今回は夏のBBQ交流会を開催します。気になるイベントを選んで、そのままお申し込みいただけます。</p>
 
-    <section class="section" id="event">
-      <div class="event-wrap">
-        <div class="flyer-card">
+      <div class="event-layout">
+        <div class="flyer-frame">
           <img src="tomonowa-bbq-party-2026-flyer.png" alt="TOMONOWA BBQ PARTY 2026 フライヤー">
         </div>
-        <div class="event-panel">
-          <div class="eyebrow">JULY 18 / 18:00</div>
-          <h2>TOMONOWA<br>BBQ PARTY 2026</h2>
-          <p>笹塚で開催する、立食形式のBBQ交流会。20代半ば〜30代向けに、堅くないけど上品に楽しめる夏イベントとして開催します。</p>
-          <div class="facts">
+
+        <div>
+          <div class="event-detail">
+            <div class="fact"><span>イベント</span><b>TOMONOWA BBQ PARTY 2026</b></div>
             <div class="fact"><span>開催日</span><b>2026年7月18日（土）</b></div>
             <div class="fact"><span>時間</span><b>18:00〜20:00</b></div>
             <div class="fact"><span>場所</span><b>最寄駅：笹塚駅<br>会場詳細はお申し込み後にご案内します</b></div>
             <div class="fact"><span>定員</span><b>最大40名</b></div>
+            <div class="fact"><span>料金</span><b>6/30まで早割：女性 3,000円 / 男性 6,000円<br>7/1以降通常：女性 3,500円 / 男性 6,500円</b></div>
+            <div class="fact"><span>内容</span><b>立食形式のBBQ交流会。食材・ドリンク・BBQ用品はこちらで用意します。</b></div>
           </div>
-          <div class="price-grid">
-            <div class="price"><strong>6/30まで早割</strong><p>女性 3,000円<br>男性 6,000円</p></div>
-            <div class="price"><strong>7/1以降 通常</strong><p>女性 3,500円<br>男性 6,500円</p></div>
-          </div>
-          <p class="note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
-          <button class="btn btn-primary" onclick="openForm()">このイベントに申し込む</button>
+          <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
+          <button class="apply-button" onclick="openForm()">このイベントに申し込む</button>
         </div>
       </div>
     </section>
 
-    <footer><b>TOMONOWA</b>　夏らしいこと、今年こそ。</footer>
+    <section class="lp-section">
+      <img src="lp-assets/06-flow.png" alt="参加はかんたん。気になる夜を選ぶだけ。">
+      <a class="cta-hit cta-hit--flow" href="#current-event" aria-label="イベント一覧を見る"></a>
+    </section>
+    <section class="lp-section"><img src="lp-assets/07-faq.png" alt="よくある質問"></section>
+    <section class="lp-section">
+      <img src="lp-assets/08-final-cta.png" alt="TOMONOWA イベント一覧を見る">
+      <a class="cta-hit cta-hit--final" href="#current-event" aria-label="イベント一覧を見る"></a>
+    </section>
+  </main>
+
+  <div class="modal" id="modal">
+    <div class="dialog">
+      <button class="close" onclick="closeForm()">×</button>
+      <div id="dialog"></div>
+    </div>
   </div>
 
-  <div class="modal" id="modal"><div class="dialog"><button class="close" onclick="closeForm()">×</button><div id="dialog"></div></div></div>
-
   <script>
-    const GAS_ENDPOINT="https://script.google.com/macros/s/AKfycbyIrmW711bkwM6e6iNx8z06gMQmmEa6kZ68pFbkxGo6RXV6qGl8Q4EPX0B5CSfyQGp0/exec";
-    const EVENT={id:"tomonowa-bbq-2026-07-18",title:"TOMONOWA BBQ PARTY 2026",date:"2026年7月18日（土）18:00〜20:00",venue:"最寄駅：笹塚駅／会場詳細はお申し込み後にご案内します",capacity:40};
-    function openForm(){dialog.innerHTML=`<div class="eyebrow">EVENT ENTRY</div><h2>TOMONOWA BBQ PARTY 2026<br>参加申し込み</h2><div class="info"><b>${EVENT.date}</b><br>場所：最寄駅 笹塚駅<br>6/30まで早割：女性 3,000円 ／ 男性 6,000円<br>7/1以降通常：女性 3,500円 ／ 男性 6,500円<br><small>定員が埋まり次第、お申し込み受付を終了します。</small></div><form class="form" onsubmit="apply(event)" novalidate><div class="field full"><label>お名前 *</label><input name="name"></div><div class="field"><label>メールアドレス *</label><input name="email" type="email"></div><div class="field"><label>年齢 *</label><input name="age" type="number" min="20" max="99"></div><div class="field full"><label>性別 *</label><div class="choice"><label><input type="radio" name="gender" value="女性"> 女性</label><label><input type="radio" name="gender" value="男性"> 男性</label></div></div><div class="field full"><label>現在の職業 *</label><input name="job" placeholder="例：会社員、看護師、経営者"></div><div class="field full"><label>年収 *</label><div class="choice"><label><input type="radio" name="income" value="200万〜300万円"> 200万〜300万円</label><label><input type="radio" name="income" value="300万〜400万円"> 300万〜400万円</label><label><input type="radio" name="income" value="400万〜500万円"> 400万〜500万円</label><label><input type="radio" name="income" value="500万円以上"> 500万円以上</label></div></div><div class="field full"><label>紹介者はいらっしゃいますか？（任意）</label><input name="referrer" placeholder="いる場合は紹介者のお名前をご記入ください。空欄でも問題ありません。"></div><div class="field full" style="color:#516b79;font-size:10px">入力いただいた情報は、イベント運営・参加者への連絡・安全な運営管理のために使用します。</div><p class="message" id="message"></p><button class="btn btn-primary" type="submit">この内容で申し込む</button></form>`;modal.classList.add("open")}
-    function closeForm(){modal.classList.remove("open")}
-    async function apply(e){e.preventDefault();const f=e.target,m=f.querySelector("#message"),button=f.querySelector("button"),gender=f.elements.gender.value,income=f.elements.income.value,name=f.elements.name.value.trim(),email=f.elements.email.value.trim(),age=f.elements.age.value.trim(),job=f.elements.job.value.trim(),referrer=f.elements.referrer.value.trim();m.style.display="none";if(!name||!email||!age||!gender||!job||!income){m.textContent="すべての必須項目を入力してください。";m.style.display="block";return}button.disabled=true;button.textContent="送信しています...";try{const payload=new URLSearchParams({eventId:EVENT.id,eventTitle:EVENT.title,eventDate:EVENT.date,eventVenue:EVENT.venue,capacity:String(EVENT.capacity),name,email,gender,age,job,income,referrer,line:""});await fetch(GAS_ENDPOINT,{method:"POST",mode:"no-cors",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:payload.toString()});dialog.innerHTML=`<div class="success"><div class="eyebrow">WELCOME TO TOMONOWA</div><h2>参加申し込みを送信しました。</h2><p>${EVENT.date}<br>${EVENT.venue}<br>${gender}枠で受け付けました。</p><button class="btn btn-primary" onclick="closeForm()">閉じる</button></div>`}catch(err){m.textContent="送信できませんでした。接続を確認してもう一度お試しください。";m.style.display="block";button.disabled=false;button.textContent="もう一度送信する"}}
-    modal.onclick=e=>{if(e.target===modal)closeForm()};
+    const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyIrmW711bkwM6e6iNx8z06gMQmmEa6kZ68pFbkxGo6RXV6qGl8Q4EPX0B5CSfyQGp0/exec";
+    const EVENT = {
+      id: "tomonowa-bbq-2026-07-18",
+      title: "TOMONOWA BBQ PARTY 2026",
+      date: "2026年7月18日（土）18:00〜20:00",
+      venue: "最寄駅：笹塚駅／会場詳細はお申し込み後にご案内します",
+      capacity: 40
+    };
+
+    function openForm() {
+      dialog.innerHTML = `<h2>TOMONOWA BBQ PARTY 2026<br>参加申し込み</h2>
+        <div class="info"><b>${EVENT.date}</b><br>場所：最寄駅 笹塚駅<br>6/30まで早割：女性 3,000円 / 男性 6,000円<br>7/1以降通常：女性 3,500円 / 男性 6,500円<br><small>定員が埋まり次第、お申し込み受付を終了します。</small></div>
+        <form class="form" onsubmit="apply(event)" novalidate>
+          <div class="field full"><label>お名前 *</label><input name="name"></div>
+          <div class="field"><label>メールアドレス *</label><input name="email" type="email"></div>
+          <div class="field"><label>年齢 *</label><input name="age" type="number" min="20" max="99"></div>
+          <div class="field full"><label>性別 *</label><div class="choice"><label><input type="radio" name="gender" value="女性"> 女性</label><label><input type="radio" name="gender" value="男性"> 男性</label></div></div>
+          <div class="field full"><label>現在の職業 *</label><input name="job" placeholder="例：会社員、看護師、経営者"></div>
+          <div class="field full"><label>年収 *</label><div class="choice"><label><input type="radio" name="income" value="200万〜300万円"> 200万〜300万円</label><label><input type="radio" name="income" value="300万〜400万円"> 300万〜400万円</label><label><input type="radio" name="income" value="400万〜500万円"> 400万〜500万円</label><label><input type="radio" name="income" value="500万円以上"> 500万円以上</label></div></div>
+          <div class="field full"><label>紹介者はいらっしゃいますか？（任意）</label><input name="referrer" placeholder="いる場合は紹介者のお名前をご記入ください。空欄でも問題ありません。"></div>
+          <div class="field full" style="color:#516b79;font-size:10px">入力いただいた情報は、イベント運営・参加者への連絡・安全な運営管理のために使用します。</div>
+          <p class="message" id="message"></p>
+          <button class="apply-button" type="submit">この内容で申し込む</button>
+        </form>`;
+      modal.classList.add("open");
+    }
+
+    function closeForm() {
+      modal.classList.remove("open");
+    }
+
+    async function apply(e) {
+      e.preventDefault();
+      const f = e.target;
+      const m = f.querySelector("#message");
+      const button = f.querySelector("button");
+      const gender = f.elements.gender.value;
+      const income = f.elements.income.value;
+      const name = f.elements.name.value.trim();
+      const email = f.elements.email.value.trim();
+      const age = f.elements.age.value.trim();
+      const job = f.elements.job.value.trim();
+      const referrer = f.elements.referrer.value.trim();
+
+      m.style.display = "none";
+      if (!name || !email || !age || !gender || !job || !income) {
+        m.textContent = "すべての必須項目を入力してください。";
+        m.style.display = "block";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "送信しています...";
+
+      try {
+        const payload = new URLSearchParams({
+          eventId: EVENT.id,
+          eventTitle: EVENT.title,
+          eventDate: EVENT.date,
+          eventVenue: EVENT.venue,
+          capacity: String(EVENT.capacity),
+          name,
+          email,
+          gender,
+          age,
+          job,
+          income,
+          referrer,
+          line: ""
+        });
+
+        await fetch(GAS_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: payload.toString()
+        });
+
+        dialog.innerHTML = `<div class="success"><h2>参加申し込みを送信しました。</h2><p>${EVENT.date}<br>${EVENT.venue}<br>${gender}枠で受け付けました。</p><button class="apply-button" onclick="closeForm()">閉じる</button></div>`;
+      } catch (err) {
+        m.textContent = "送信できませんでした。接続を確認してもう一度お試しください。";
+        m.style.display = "block";
+        button.disabled = false;
+        button.textContent = "もう一度送信する";
+      }
+    }
+
+    modal.onclick = e => {
+      if (e.target === modal) closeForm();
+    };
   </script>
 </body>
 </html>
-
