@@ -15,6 +15,11 @@
       font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
     }
     button, input { font: inherit; }
+    a.apply-button {
+      display: inline-grid;
+      place-items: center;
+      text-decoration: none;
+    }
     .lp {
       width: min(100%, 941px);
       margin: 0 auto;
@@ -318,7 +323,7 @@
             <div class="fact"><span>内容</span><b>立食形式のBBQ交流会。食材・ドリンク・BBQ用品はこちらで用意します。</b></div>
           </div>
           <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
-          <button class="apply-button apply-button--event" onclick="openForm()">このイベントに申し込む</button>
+          <a class="apply-button apply-button--event" href="https://forms.gle/o6e4By4sBzHKYKhq9" target="_blank" rel="noopener">このイベントに申し込む</a>
         </div>
       </div>
     </section>
