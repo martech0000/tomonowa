@@ -160,9 +160,11 @@
       text-align: center;
     }
     .matching-note {
+      position: relative;
       max-width: 760px;
       margin: 54px auto 0;
       padding: clamp(34px, 6vw, 58px) clamp(24px, 6vw, 64px);
+      overflow: hidden;
       border: 1px solid rgba(143, 216, 255, .3);
       background:
         radial-gradient(circle at 50% 0%, rgba(143, 216, 255, .16), transparent 42%),
@@ -172,6 +174,55 @@
       box-shadow:
         0 34px 100px rgba(0, 0, 0, .32),
         inset 0 1px 0 rgba(255, 255, 255, .08);
+      opacity: 0;
+      transform: translateY(44px) scale(.94) rotate(-1.2deg);
+      transform-origin: center center;
+      will-change: transform, opacity, filter;
+    }
+    .matching-note.is-visible {
+      animation: matchingPop .98s cubic-bezier(.18, 1.35, .28, 1) forwards;
+    }
+    .matching-note.is-visible:after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      border: 1px solid rgba(229, 184, 101, .36);
+      opacity: 0;
+      animation: matchingFlash 1.05s ease-out .12s forwards;
+    }
+    @keyframes matchingPop {
+      0% {
+        opacity: 0;
+        transform: translateY(44px) scale(.94) rotate(-1.2deg);
+        filter: blur(2px);
+      }
+      55% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.035) rotate(.55deg);
+        filter: blur(0);
+      }
+      76% {
+        transform: translateY(3px) scale(.992) rotate(-.18deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+        filter: blur(0);
+      }
+    }
+    @keyframes matchingFlash {
+      0% {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      35% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.06);
+      }
     }
     .matching-kicker {
       margin: 0 0 14px;
@@ -339,6 +390,17 @@
       .form .apply-button,
       .message { grid-column: auto; }
     }
+    @media (prefers-reduced-motion: reduce) {
+      .matching-note {
+        opacity: 1;
+        transform: none;
+        will-change: auto;
+      }
+      .matching-note.is-visible,
+      .matching-note.is-visible:after {
+        animation: none;
+      }
+    }
   </style>
 </head>
 <body>
@@ -496,6 +558,24 @@
     modal.onclick = e => {
       if (e.target === modal) closeForm();
     };
+
+    const matchingSection = document.querySelector(".matching-note");
+    if (matchingSection) {
+      const revealMatching = () => matchingSection.classList.add("is-visible");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              revealMatching();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.35 });
+        observer.observe(matchingSection);
+      } else {
+        revealMatching();
+      }
+    }
   </script>
 </body>
 </html>
