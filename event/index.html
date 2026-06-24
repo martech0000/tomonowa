@@ -160,26 +160,48 @@
       text-align: center;
     }
     .matching-note {
-      margin: 24px 0 0;
-      padding: 24px 22px;
+      max-width: 760px;
+      margin: 54px auto 0;
+      padding: clamp(34px, 6vw, 58px) clamp(24px, 6vw, 64px);
       border: 1px solid rgba(143, 216, 255, .3);
       background:
-        radial-gradient(circle at 12% 0%, rgba(143, 216, 255, .14), transparent 38%),
+        radial-gradient(circle at 50% 0%, rgba(143, 216, 255, .16), transparent 42%),
+        radial-gradient(circle at 86% 82%, rgba(229, 184, 101, .11), transparent 34%),
         linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025));
-      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .08);
+      text-align: center;
+      box-shadow:
+        0 34px 100px rgba(0, 0, 0, .32),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+    }
+    .matching-kicker {
+      margin: 0 0 14px;
+      color: #8dd9ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2em;
     }
     .matching-note h2 {
       margin: 0 0 12px;
       color: #fff;
       font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
-      font-size: clamp(22px, 3.6vw, 34px);
+      font-size: clamp(34px, 7vw, 68px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: .05em;
+    }
+    .matching-note h2 span { color: #e5b865; }
+    .matching-subcopy {
+      margin: 12px 0 26px;
+      color: #e5b865;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(22px, 4.2vw, 40px);
       font-weight: 600;
       line-height: 1.45;
       letter-spacing: .05em;
     }
-    .matching-note h2 span { color: #e5b865; }
     .matching-note p {
-      margin: 0;
+      margin: 0 auto;
+      max-width: 540px;
       color: #d9d1c2;
       font-size: 14px;
       line-height: 2;
@@ -190,6 +212,10 @@
       color: #9db3c1;
       font-size: 11px;
       line-height: 1.8;
+    }
+    .event-apply-wrap {
+      max-width: 760px;
+      margin: 0 auto;
     }
     .apply-button {
       width: 100%;
@@ -354,14 +380,18 @@
             <div class="fact"><span>料金</span><b>6/30まで早割：女性 3,000円 / 男性 6,000円<br>7/1以降通常：女性 3,500円 / 男性 6,500円</b></div>
             <div class="fact"><span>内容</span><b>立食形式のBBQ交流会。食材・ドリンク・BBQ用品はこちらで用意します。</b></div>
           </div>
-          <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
-          <div class="matching-note">
-            <h2>もしかしたら、<span>運命の出会い</span>があるかも。</h2>
-            <p>当日は、参加者同士が自然につながれるリアルマッチングも実施！<br>ただ集まるだけじゃない、<br>少しだけドキドキする時間も楽しめる。</p>
-            <small>本人の許可なく名前を出さず、運営が結果を管理します。</small>
-          </div>
-          <a class="apply-button apply-button--event" href="https://forms.gle/o6e4By4sBzHKYKhq9" target="_blank" rel="noopener">このイベントに申し込む</a>
         </div>
+      </div>
+      <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
+      <div class="matching-note">
+        <p class="matching-kicker">SPECIAL CONTENT</p>
+        <h2>リアルマッチング<span>開催</span></h2>
+        <p class="matching-subcopy">もしかしたら、運命の出会いがあるかも。</p>
+        <p>当日は、参加者同士が自然につながれるリアルマッチングも実施！<br>ただ集まるだけじゃない、<br>少しだけドキドキする時間も楽しめる。</p>
+        <small>本人の許可なく名前を出さず、運営が結果を管理します。</small>
+      </div>
+      <div class="event-apply-wrap">
+        <a class="apply-button apply-button--event" href="https://forms.gle/o6e4By4sBzHKYKhq9" target="_blank" rel="noopener">このイベントに申し込む</a>
       </div>
     </section>
 
