@@ -4,27 +4,862 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>TOMONOWA | 今夜から、友達の輪が広がる。</title>
-  <link rel="stylesheet" href="styles.css">
+  <style>
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #020b14;
+      color: #f7f3ea;
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+    }
+    button, input { font: inherit; }
+    a.apply-button {
+      display: inline-grid;
+      place-items: center;
+      text-decoration: none;
+    }
+    .lp {
+      width: min(100%, 941px);
+      margin: 0 auto;
+      background: #020b14;
+    }
+    .lp-section {
+      position: relative;
+      width: 100%;
+      line-height: 0;
+    }
+    .lp-section img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .cta-hit {
+      position: absolute;
+      z-index: 2;
+      display: block;
+    }
+    .cta-hit--hero {
+      left: 9.5%;
+      right: 9.5%;
+      top: 79.2%;
+      height: 8.6%;
+    }
+    .cta-hit--flow {
+      left: 12.5%;
+      right: 12.5%;
+      top: 73.6%;
+      height: 8.9%;
+    }
+    .cta-hit--final {
+      left: 9.5%;
+      right: 9.5%;
+      top: 63.8%;
+      height: 8.9%;
+    }
+    .cta-hit:focus-visible {
+      outline: 4px solid #fff;
+      outline-offset: -4px;
+    }
+    .current-event {
+      position: relative;
+      padding: clamp(64px, 10vw, 112px) clamp(22px, 7vw, 86px);
+      overflow: visible;
+      background:
+        radial-gradient(circle at 20% 0%, rgba(221, 171, 80, .16), transparent 34%),
+        radial-gradient(circle at 82% 14%, rgba(60, 136, 180, .14), transparent 36%),
+        linear-gradient(180deg, #020b14 0%, #061521 48%, #020b14 100%);
+    }
+    .current-event:before,
+    .current-event:after {
+      content: "";
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(229, 184, 101, .82), transparent);
+    }
+    .current-event:before { top: 34px; }
+    .current-event:after { bottom: 34px; }
+    .event-kicker {
+      margin: 0 0 16px;
+      color: #e5b865;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-align: center;
+    }
+    .event-title {
+      margin: 0;
+      color: #fff;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(34px, 7vw, 72px);
+      font-weight: 500;
+      line-height: 1.22;
+      letter-spacing: .04em;
+      text-align: center;
+    }
+    .event-title span { color: #e5b865; }
+    .event-lead {
+      max-width: 680px;
+      margin: 22px auto 42px;
+      color: #d9d1c2;
+      font-size: clamp(14px, 2.4vw, 18px);
+      line-height: 2;
+      text-align: center;
+    }
+    .event-layout {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 30px;
+      align-items: start;
+    }
+    .flyer-frame {
+      padding: 10px;
+      border: 1px solid rgba(229, 184, 101, .34);
+      background: rgba(255, 255, 255, .04);
+      box-shadow: 0 30px 90px rgba(0, 0, 0, .38);
+    }
+    .flyer-frame img {
+      display: block;
+      width: 100%;
+      height: auto;
+      background: #fff;
+    }
+    .event-detail {
+      border-top: 1px solid rgba(229, 184, 101, .34);
+      border-bottom: 1px solid rgba(229, 184, 101, .34);
+      padding: 10px 0 0;
+    }
+    .next-event-card {
+      margin: 56px auto 0;
+      max-width: 920px;
+      padding: clamp(28px, 5vw, 48px);
+      border: 1px solid rgba(229, 184, 101, .42);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(229, 184, 101, .16), transparent 32%),
+        linear-gradient(135deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025));
+      box-shadow: 0 30px 100px rgba(0, 0, 0, .32);
+      text-align: left;
+    }
+    .next-event-kicker {
+      margin: 0 0 12px;
+      color: #8fd8ff;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .22em;
+    }
+    .next-event-card h2 {
+      margin: 0 0 16px;
+      color: #fff;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(28px, 5vw, 48px);
+      line-height: 1.25;
+      letter-spacing: .04em;
+    }
+    .next-event-card h2 span { color: #e5b865; }
+    .next-event-card > p {
+      margin: 0 0 28px;
+      color: #d9d1c2;
+      font-size: clamp(13px, 2.2vw, 16px);
+      line-height: 2;
+    }
+    .next-event-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0 30px;
+      border-top: 1px solid rgba(255, 255, 255, .12);
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      margin-bottom: 28px;
+    }
+    .next-event-fact {
+      display: grid;
+      grid-template-columns: 90px 1fr;
+      gap: 14px;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .1);
+    }
+    .next-event-fact:nth-last-child(-n+2) { border-bottom: 0; }
+    .next-event-fact span {
+      color: #9db3c1;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .12em;
+    }
+    .next-event-fact b {
+      color: #fff;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+    .next-event-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 54px;
+      padding: 0 28px;
+      border: 1px solid rgba(229, 184, 101, .52);
+      color: #e5b865;
+      background: rgba(229, 184, 101, .08);
+      font-weight: 800;
+      letter-spacing: .08em;
+    }
+    .fact {
+      display: grid;
+      grid-template-columns: 106px 1fr;
+      gap: 18px;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .12);
+      line-height: 1.7;
+    }
+    .fact:last-child { border-bottom: 0; }
+    .fact span {
+      color: #9db3c1;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .12em;
+    }
+    .fact b {
+      color: #fff;
+      font-size: 15px;
+      font-weight: 700;
+    }
+    .price-note {
+      margin: 22px 0 0;
+      color: #d9d1c2;
+      font-size: 12px;
+      line-height: 1.9;
+      text-align: center;
+    }
+    .seat-status {
+      max-width: 760px;
+      margin: 30px auto 0;
+      padding: 26px;
+      border: 1px solid rgba(229, 184, 101, .46);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(229, 184, 101, .16), transparent 42%),
+        rgba(255, 255, 255, .045);
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .28);
+    }
+    .seat-status__title {
+      margin: 0 0 18px;
+      color: #fff;
+      font-size: clamp(18px, 3vw, 26px);
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: .08em;
+    }
+    .seat-status__title span { color: #e5b865; }
+    .seat-status__grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+    .seat-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, .16);
+      background: rgba(3, 19, 31, .72);
+      text-align: center;
+    }
+    .seat-card__label {
+      margin: 0 0 10px;
+      color: #9db3c1;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+    }
+    .seat-card__count {
+      margin: 0;
+      color: #fff;
+      font-size: clamp(28px, 5vw, 44px);
+      font-weight: 900;
+      line-height: 1;
+    }
+    .seat-card__count span {
+      color: #e5b865;
+      font-size: 1.2em;
+    }
+    .seat-card__note {
+      margin: 12px 0 0;
+      color: #d9d1c2;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .seat-bar {
+      height: 8px;
+      margin-top: 16px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, .12);
+    }
+    .seat-bar span {
+      display: block;
+      height: 100%;
+      background: linear-gradient(90deg, #8dd9ff, #e5b865);
+    }
+    .seat-status__caption {
+      margin: 18px 0 0;
+      color: #e5b865;
+      font-size: 12px;
+      font-weight: 800;
+      text-align: center;
+      letter-spacing: .08em;
+    }
+    .matching-note {
+      position: relative;
+      max-width: 760px;
+      margin: 54px auto 0;
+      padding: clamp(34px, 6vw, 58px) clamp(24px, 6vw, 64px);
+      overflow: visible;
+      border: 1px solid rgba(143, 216, 255, .3);
+      background:
+        radial-gradient(circle at 50% 0%, rgba(143, 216, 255, .16), transparent 42%),
+        radial-gradient(circle at 86% 82%, rgba(229, 184, 101, .11), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025));
+      text-align: center;
+      box-shadow:
+        0 34px 100px rgba(0, 0, 0, .32),
+        inset 0 1px 0 rgba(255, 255, 255, .08);
+      opacity: 0;
+      transform: translateY(44px) scale(.94) rotate(-1.2deg);
+      transform-origin: center center;
+      will-change: transform, opacity, filter;
+    }
+    .matching-note.is-visible {
+      animation: matchingPop .98s cubic-bezier(.18, 1.35, .28, 1) .16s forwards;
+    }
+    .matching-note.is-visible:after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      pointer-events: none;
+      border: 1px solid rgba(229, 184, 101, .36);
+      opacity: 0;
+      animation: matchingFlash 1.05s ease-out .28s forwards;
+    }
+    .heart-burst {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .heart {
+      position: absolute;
+      left: var(--left);
+      top: var(--top);
+      width: var(--size);
+      height: var(--size);
+      opacity: 0;
+      background: var(--heart-color);
+      filter:
+        drop-shadow(0 0 12px rgba(255, 255, 255, .22))
+        drop-shadow(0 0 18px rgba(255, 80, 112, .18));
+      transform: rotate(-45deg) scale(.18);
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: inherit;
+    }
+    .heart:before { top: -50%; left: 0; }
+    .heart:after { top: 0; left: 50%; }
+    .matching-note.is-visible .heart {
+      animation: heartBurst 1.45s ease-out var(--delay) both;
+    }
+    .matching-note > :not(.heart-burst) {
+      position: relative;
+      z-index: 1;
+    }
+    .heart--1 { --left: 17%; --top: 62%; --size: 15px; --tx: -70px; --ty: -98px; --s: 1.1; --delay: .02s; --heart-color: rgba(255, 255, 255, .92); }
+    .heart--2 { --left: 26%; --top: 53%; --size: 18px; --tx: -44px; --ty: -132px; --s: 1.2; --delay: .08s; --heart-color: rgba(255, 82, 118, .9); }
+    .heart--3 { --left: 38%; --top: 66%; --size: 13px; --tx: -20px; --ty: -110px; --s: .95; --delay: .14s; --heart-color: rgba(255, 255, 255, .78); }
+    .heart--4 { --left: 52%; --top: 58%; --size: 21px; --tx: 6px; --ty: -150px; --s: 1.18; --delay: .04s; --heart-color: rgba(255, 95, 128, .86); }
+    .heart--5 { --left: 64%; --top: 67%; --size: 14px; --tx: 44px; --ty: -118px; --s: 1; --delay: .12s; --heart-color: rgba(255, 255, 255, .86); }
+    .heart--6 { --left: 75%; --top: 55%; --size: 17px; --tx: 70px; --ty: -126px; --s: 1.08; --delay: .18s; --heart-color: rgba(255, 73, 108, .82); }
+    .heart--7 { --left: 44%; --top: 42%; --size: 11px; --tx: -54px; --ty: -80px; --s: .88; --delay: .22s; --heart-color: rgba(255, 255, 255, .72); }
+    .heart--8 { --left: 58%; --top: 43%; --size: 12px; --tx: 58px; --ty: -88px; --s: .9; --delay: .26s; --heart-color: rgba(255, 118, 145, .72); }
+    @keyframes matchingPop {
+      0% {
+        opacity: 0;
+        transform: translateY(44px) scale(.94) rotate(-1.2deg);
+        filter: blur(2px);
+      }
+      55% {
+        opacity: 1;
+        transform: translateY(-6px) scale(1.035) rotate(.55deg);
+        filter: blur(0);
+      }
+      76% {
+        transform: translateY(3px) scale(.992) rotate(-.18deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotate(0);
+        filter: blur(0);
+      }
+    }
+    @keyframes heartBurst {
+      0% {
+        opacity: 0;
+        transform: translate(0, 20px) rotate(-45deg) scale(.18);
+        filter:
+          blur(4px)
+          drop-shadow(0 0 12px rgba(255, 255, 255, .18));
+      }
+      18% {
+        opacity: .95;
+        transform: translate(0, 0) rotate(-45deg) scale(.92);
+        filter:
+          blur(0)
+          drop-shadow(0 0 14px rgba(255, 255, 255, .3))
+          drop-shadow(0 0 22px rgba(255, 80, 112, .2));
+      }
+      100% {
+        opacity: 0;
+        transform: translate(var(--tx), var(--ty)) rotate(-45deg) scale(var(--s));
+        filter:
+          blur(2px)
+          drop-shadow(0 0 20px rgba(255, 255, 255, .12));
+      }
+    }
+    @keyframes matchingFlash {
+      0% {
+        opacity: 0;
+        transform: scale(.96);
+      }
+      35% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0;
+        transform: scale(1.06);
+      }
+    }
+    .matching-kicker {
+      margin: 0 0 14px;
+      color: #8dd9ff;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .2em;
+    }
+    .matching-note h2 {
+      margin: 0 0 12px;
+      color: #fff;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(34px, 7vw, 68px);
+      font-weight: 600;
+      line-height: 1.18;
+      letter-spacing: .05em;
+    }
+    .matching-note h2 span { color: #e5b865; }
+    .matching-subcopy {
+      margin: 12px 0 26px;
+      color: #e5b865;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(22px, 4.2vw, 40px);
+      font-weight: 600;
+      line-height: 1.45;
+      letter-spacing: .05em;
+    }
+    .matching-note p {
+      margin: 0 auto;
+      max-width: 540px;
+      color: #d9d1c2;
+      font-size: 14px;
+      line-height: 2;
+    }
+    .event-apply-wrap {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .apply-button {
+      width: 100%;
+      margin-top: 24px;
+      min-height: 70px;
+      border: 1px solid rgba(255, 244, 199, .74);
+      background: linear-gradient(180deg, #ffe7a2 0%, #dca64a 100%);
+      color: #07121c;
+      font-family: "Yu Mincho", "Hiragino Mincho ProN", serif;
+      font-size: clamp(19px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: .16em;
+      cursor: pointer;
+      box-shadow: 0 0 28px rgba(229, 184, 101, .26);
+      transition: transform .18s ease, filter .18s ease;
+    }
+    .apply-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .apply-button--event {
+      border-color: rgba(143, 216, 255, .78);
+      background: linear-gradient(180deg, #8dd9ff 0%, #2a92cf 48%, #0c4e7b 100%);
+      color: #fff;
+      font-family: "Yu Gothic UI", "Noto Sans JP", system-ui, sans-serif;
+      font-size: clamp(17px, 2.5vw, 24px);
+      letter-spacing: .12em;
+      text-shadow: 0 1px 0 rgba(0, 0, 0, .18);
+      box-shadow:
+        0 0 28px rgba(89, 179, 233, .34),
+        inset 0 1px 0 rgba(255, 255, 255, .42);
+    }
+    .apply-button--event:hover {
+      filter: brightness(1.08) saturate(1.06);
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      padding: 16px;
+      overflow: auto;
+      background: rgba(0, 5, 10, .86);
+    }
+    .modal.open {
+      display: grid;
+      place-items: center;
+    }
+    .dialog {
+      position: relative;
+      width: min(760px, 100%);
+      padding: clamp(28px, 5vw, 44px);
+      background: #f7fbfd;
+      color: #071b2b;
+      box-shadow: 0 35px 120px rgba(0, 0, 0, .55);
+    }
+    .close {
+      position: absolute;
+      top: 10px;
+      right: 16px;
+      border: 0;
+      background: transparent;
+      font-size: 30px;
+      cursor: pointer;
+    }
+    .dialog h2 {
+      margin: 0 0 16px;
+      font-size: clamp(26px, 5vw, 40px);
+      line-height: 1.35;
+    }
+    .info {
+      padding: 16px 18px;
+      margin: 18px 0;
+      border-left: 4px solid #071b2b;
+      background: #e8f2f6;
+      line-height: 1.8;
+    }
+    .discount-offer {
+      margin: 22px 0 0;
+      padding: 18px 20px;
+      border: 1px solid rgba(229, 184, 101, .72);
+      border-radius: 8px;
+      background: linear-gradient(120deg, rgba(229, 184, 101, .16), rgba(143, 216, 255, .1));
+      text-align: center;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, .12);
+    }
+    .discount-offer__kicker {
+      margin: 0 0 7px;
+      color: #e5b865;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: .16em;
+    }
+    .discount-offer__main {
+      margin: 0;
+      color: #fff6de;
+      font-size: clamp(17px, 2.4vw, 23px);
+      font-weight: 900;
+      line-height: 1.55;
+    }
+    .discount-offer__main strong { color: #8dd9ff; }
+    .discount-offer__note {
+      margin: 7px 0 0;
+      color: #d9d1c2;
+      font-size: 12px;
+      line-height: 1.7;
+    }
+    .form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px 16px;
+    }
+    .field { display: grid; gap: 6px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label {
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .field input {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #c7d5dc;
+      background: #fff;
+    }
+    .choice {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .choice label {
+      flex: 1;
+      min-width: 130px;
+      padding: 11px;
+      border: 1px solid #c7d5dc;
+      background: #fff;
+      cursor: pointer;
+    }
+    .choice input { width: auto; }
+    .form .apply-button,
+    .message { grid-column: 1 / -1; }
+    .message {
+      display: none;
+      margin: 0;
+      color: #b3261e;
+      font-size: 12px;
+      font-weight: 800;
+    }
+    .success {
+      text-align: center;
+      padding: 42px 0;
+    }
+    @media (max-width: 760px) {
+      .event-layout { display: block; }
+      .event-detail { margin-top: 28px; }
+      .seat-status__grid { grid-template-columns: 1fr; }
+      .next-event-grid { grid-template-columns: 1fr; }
+      .next-event-fact:nth-last-child(-n+2) { border-bottom: 1px solid rgba(255, 255, 255, .1); }
+      .next-event-fact:last-child { border-bottom: 0; }
+      .fact { grid-template-columns: 88px 1fr; }
+      .form { grid-template-columns: 1fr; }
+      .field.full,
+      .form .apply-button,
+      .message { grid-column: auto; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .matching-note {
+        opacity: 1;
+        transform: none;
+        will-change: auto;
+      }
+      .matching-note.is-visible,
+      .matching-note.is-visible:after {
+        animation: none;
+      }
+      .matching-note.is-visible .heart {
+        animation: none;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="lp">
     <section class="lp-section">
-      <img src="assets/01-hero-instagram.png" alt="TOMONOWA 公式Instagramをフォローする">
-      <a class="cta-hit cta-hit--hero" href="https://www.instagram.com/tomono_wa/" target="_blank" rel="noopener" aria-label="TOMONOWA公式Instagramをフォローする"></a>
+      <img src="lp-assets/01-hero.png" alt="TOMONOWA 今夜から、友達の輪が広がる。">
+      <a class="cta-hit cta-hit--hero" href="#current-event" aria-label="イベント一覧を見る"></a>
     </section>
-    <section class="lp-section"><img src="assets/02-pain.png" alt="こんなふうに感じたことはありませんか？"></section>
-    <section class="lp-section"><img src="assets/03-about.png" alt="TOMONOWAとは"></section>
-    <section class="lp-section"><img src="assets/04-reassurance.png" alt="はじめてでも、ひとりでも、安心して参加できるように。"></section>
-    <section class="lp-section"><img src="assets/05-events.png" alt="気軽に参加できる、大人の夜イベント。"></section>
-    <section class="lp-section">
-      <img src="assets/06-flow-instagram.png" alt="公式Instagramをフォローしてイベント情報を見る">
-      <a class="cta-hit cta-hit--flow" href="https://www.instagram.com/tomono_wa/" target="_blank" rel="noopener" aria-label="TOMONOWA公式Instagramをフォローする"></a>
+
+    <section class="lp-section"><img src="lp-assets/02-pain.png" alt="こんなふうに感じたことはありませんか？"></section>
+    <section class="lp-section"><img src="lp-assets/03-about.png" alt="TOMONOWAとは"></section>
+    <section class="lp-section"><img src="lp-assets/04-reassurance.png" alt="はじめてでも、ひとりでも、安心して参加できるように。"></section>
+    <section class="lp-section"><img src="lp-assets/05-events.png" alt="気軽に参加できる、大人の夜イベント。"></section>
+
+    <section class="current-event" id="current-event">
+      <p class="event-kicker">CURRENT EVENT</p>
+      <h1 class="event-title">開催中の<span>イベント</span></h1>
+      <p class="event-lead">今年の夏を、ただ過ごすだけで終わらせない。自然な交流と少しのワクワクを楽しむ、TOMONOWAの夏の特別イベントです。</p>
+
+      <div class="event-layout">
+        <div class="flyer-frame">
+          <img src="tomonowa-natsumatsuri-2026-flyer.png" alt="TOMONOWA 大人の夏祭り 2026 フライヤー">
+        </div>
+
+        <div>
+          <div class="event-detail">
+            <div class="fact"><span>イベント</span><b>TOMONOWA 大人の夏祭り 2026</b></div>
+            <div class="fact"><span>開催日</span><b>2026年8月16日（日）</b></div>
+            <div class="fact"><span>時間</span><b>18:00〜21:00</b></div>
+            <div class="fact"><span>場所</span><b>池袋<br>会場詳細はお申し込み後にご案内します</b></div>
+            <div class="fact"><span>定員</span><b>最大100名</b></div>
+            <div class="fact"><span>料金</span><b>女性 3,000円 / 男性 7,000円</b></div>
+            <div class="fact"><span>内容</span><b>ただ集まって飲むだけではない、自然な交流と夏の遊び心を楽しむ3時間。お一人でも、友達との参加でも歓迎です。</b></div>
+          </div>
+        </div>
+      </div>
+      <div class="discount-offer" aria-label="早期申込・事前振込割引">
+        <p class="discount-offer__kicker">EARLY BOOKING OFFER</p>
+        <p class="discount-offer__main">7月中のお申し込みで <strong>500円引き</strong><br>さらに事前振込で <strong>500円引き</strong></p>
+        <p class="discount-offer__note">最大1,000円引き。女性は2,000円、男性は6,000円で参加できます。振込先はお申し込み後にご案内します。</p>
+      </div>
+      <p class="price-note">公式LINEへの登録だけでは、イベント申込は完了しません。定員が埋まり次第、受付を終了します。</p>
+      <div class="seat-status" aria-label="現在の受付状況">
+        <p class="seat-status__title">現在の<span>受付状況</span></p>
+        <div class="seat-status__grid">
+          <div class="seat-card">
+            <p class="seat-card__label">MEN</p>
+            <p class="seat-card__count"><span>7,000</span>円</p>
+            <p class="seat-card__note">男性参加費</p>
+            <div class="seat-bar" aria-hidden="true"><span style="width: 100%"></span></div>
+          </div>
+          <div class="seat-card">
+            <p class="seat-card__label">WOMEN</p>
+            <p class="seat-card__count"><span>3,000</span>円</p>
+            <p class="seat-card__note">女性参加費</p>
+            <div class="seat-bar" aria-hidden="true"><span style="width: 100%"></span></div>
+          </div>
+        </div>
+        <p class="seat-status__caption">最大100名。定員に達し次第、受付を終了します。</p>
+      </div>
+      <div class="matching-note">
+        <div class="heart-burst" aria-hidden="true">
+          <span class="heart heart--1"></span>
+          <span class="heart heart--2"></span>
+          <span class="heart heart--3"></span>
+          <span class="heart heart--4"></span>
+          <span class="heart heart--5"></span>
+          <span class="heart heart--6"></span>
+          <span class="heart heart--7"></span>
+          <span class="heart heart--8"></span>
+        </div>
+        <p class="matching-kicker">SPECIAL CONTENT</p>
+        <h2>リアルマッチング<span>開催</span></h2>
+        <p class="matching-subcopy">気になる人と、自然につながるきっかけも。</p>
+        <p>イベント終盤には、任意参加のリアルマッチングも実施予定。<br>もう少し話してみたいと思った相手を番号で記入し、<br>お互いに気になっていた場合だけ結果をお知らせします。</p>
+      </div>
+      <div class="event-apply-wrap">
+        <button class="apply-button apply-button--event" type="button" onclick="openForm()">8月16日のイベントに申し込む</button>
+      </div>
     </section>
-    <section class="lp-section"><img src="assets/07-faq.png" alt="よくある質問"></section>
+
     <section class="lp-section">
-      <img src="assets/08-final-instagram.png" alt="TOMONOWA 公式Instagramをフォローする">
-      <a class="cta-hit cta-hit--final" href="https://www.instagram.com/tomono_wa/" target="_blank" rel="noopener" aria-label="TOMONOWA公式Instagramをフォローする"></a>
+      <img src="lp-assets/06-flow.png" alt="参加はかんたん。気になる夜を選ぶだけ。">
+      <a class="cta-hit cta-hit--flow" href="#current-event" aria-label="イベント一覧を見る"></a>
+    </section>
+    <section class="lp-section"><img src="lp-assets/07-faq.png" alt="よくある質問"></section>
+    <section class="lp-section">
+      <img src="lp-assets/08-final-cta.png" alt="TOMONOWA イベント一覧を見る">
+      <a class="cta-hit cta-hit--final" href="#current-event" aria-label="イベント一覧を見る"></a>
     </section>
   </main>
+
+  <div class="modal" id="modal">
+    <div class="dialog">
+      <button class="close" onclick="closeForm()">×</button>
+      <div id="dialog"></div>
+    </div>
+  </div>
+
+  <script>
+    const GAS_ENDPOINT = "https://script.google.com/macros/s/AKfycbyIrmW711bkwM6e6iNx8z06gMQmmEa6kZ68pFbkxGo6RXV6qGl8Q4EPX0B5CSfyQGp0/exec";
+    const EVENT = {
+      id: "tomonowa-natsumatsuri-2026-08-16",
+      title: "TOMONOWA 大人の夏祭り 2026",
+      date: "2026年8月16日（日）18:00〜21:00",
+      venue: "池袋／会場詳細はお申し込み後にご案内します",
+      capacity: 100
+    };
+
+    function openForm() {
+      dialog.innerHTML = `<h2>TOMONOWA 大人の夏祭り 2026<br>参加申し込み</h2>
+        <div class="info"><b>${EVENT.date}</b><br>場所：池袋（会場詳細はお申し込み後にご案内します）<br>通常：女性 3,000円 / 男性 7,000円<br><b>7月中の申込で500円引き、さらに事前振込で500円引き。</b><br><small>最大1,000円引き。振込先はお申し込み後にご案内します。定員に達し次第、受付を終了します。</small></div>
+        <form class="form" onsubmit="apply(event)" novalidate>
+          <div class="field full"><label>お名前 *</label><input name="name"></div>
+          <div class="field"><label>メールアドレス *</label><input name="email" type="email"></div>
+          <div class="field"><label>年齢 *</label><input name="age" type="number" min="20" max="99"></div>
+          <div class="field full"><label>性別 *</label><div class="choice"><label><input type="radio" name="gender" value="女性"> 女性</label><label><input type="radio" name="gender" value="男性"> 男性</label></div></div>
+          <div class="field full"><label>現在の職業 *</label><input name="job" placeholder="例：会社員、看護師、経営者"></div>
+          <div class="field full"><label>年収 *</label><div class="choice"><label><input type="radio" name="income" value="200万〜300万円"> 200万〜300万円</label><label><input type="radio" name="income" value="300万〜400万円"> 300万〜400万円</label><label><input type="radio" name="income" value="400万〜500万円"> 400万〜500万円</label><label><input type="radio" name="income" value="500万円以上"> 500万円以上</label></div></div>
+          <div class="field full"><label>紹介者はいらっしゃいますか？（任意）</label><input name="referrer" placeholder="いる場合は紹介者のお名前をご記入ください。空欄でも問題ありません。"></div>
+          <div class="field full" style="color:#516b79;font-size:10px">入力いただいた情報は、イベント運営・参加者への連絡・安全な運営管理のために使用します。</div>
+          <p class="message" id="message"></p>
+          <button class="apply-button" type="submit">この内容で申し込む</button>
+        </form>`;
+      modal.classList.add("open");
+    }
+
+    function closeForm() {
+      modal.classList.remove("open");
+    }
+
+    async function apply(e) {
+      e.preventDefault();
+      const f = e.target;
+      const m = f.querySelector("#message");
+      const button = f.querySelector("button");
+      const gender = f.elements.gender.value;
+      const income = f.elements.income.value;
+      const name = f.elements.name.value.trim();
+      const email = f.elements.email.value.trim();
+      const age = f.elements.age.value.trim();
+      const job = f.elements.job.value.trim();
+      const referrer = f.elements.referrer.value.trim();
+
+      m.style.display = "none";
+      if (!name || !email || !age || !gender || !job || !income) {
+        m.textContent = "すべての必須項目を入力してください。";
+        m.style.display = "block";
+        return;
+      }
+
+      button.disabled = true;
+      button.textContent = "送信しています...";
+
+      try {
+        const payload = new URLSearchParams({
+          eventId: EVENT.id,
+          eventTitle: EVENT.title,
+          eventDate: EVENT.date,
+          eventVenue: EVENT.venue,
+          capacity: String(EVENT.capacity),
+          name,
+          email,
+          gender,
+          age,
+          job,
+          income,
+          referrer,
+          line: ""
+        });
+
+        await fetch(GAS_ENDPOINT, {
+          method: "POST",
+          mode: "no-cors",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: payload.toString()
+        });
+
+        dialog.innerHTML = `<div class="success"><h2>参加申し込みを送信しました。</h2><p>${EVENT.date}<br>${EVENT.venue}<br>${gender}枠で受け付けました。</p><button class="apply-button" onclick="closeForm()">閉じる</button></div>`;
+      } catch (err) {
+        m.textContent = "送信できませんでした。接続を確認してもう一度お試しください。";
+        m.style.display = "block";
+        button.disabled = false;
+        button.textContent = "もう一度送信する";
+      }
+    }
+
+    modal.onclick = e => {
+      if (e.target === modal) closeForm();
+    };
+
+    const matchingSection = document.querySelector(".matching-note");
+    if (matchingSection) {
+      const revealMatching = () => matchingSection.classList.add("is-visible");
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              revealMatching();
+              observer.disconnect();
+            }
+          });
+        }, { threshold: 0.35 });
+        observer.observe(matchingSection);
+      } else {
+        revealMatching();
+      }
+    }
+  </script>
 </body>
 </html>
